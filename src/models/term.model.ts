@@ -1,9 +1,6 @@
 import mongoose, {Types, Schema} from 'mongoose'
 
-interface ITerm {
-    name:string
-    forSchool:Types.ObjectId
-}
+import { ITerm } from '../types'
 
 const streamSchema = new Schema<ITerm>({
     name:{
@@ -15,7 +12,7 @@ const streamSchema = new Schema<ITerm>({
         ref:'School',
         required:true
     }
-})
+},{timestamps:true})
 
 const Term = mongoose.model<ITerm>('Stream', streamSchema)
 

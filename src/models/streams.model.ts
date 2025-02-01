@@ -1,9 +1,6 @@
 import mongoose, { Schema, Types } from "mongoose"
 
-interface IStream {
-    name:string
-    forSchool:Types.ObjectId
-}
+import { IStream } from "../types"
 
 const streamSchema = new Schema<IStream>({
     name:{
@@ -15,7 +12,7 @@ const streamSchema = new Schema<IStream>({
         ref:'School',
         required:true
     }
-})
+},{timestamps:true})
 
 const Stream = mongoose.model<IStream>('Stream',streamSchema)
 

@@ -1,10 +1,6 @@
 import mongoose, { Types,Schema } from "mongoose";
 
-interface ILearner {
-    userDetails: Types.ObjectId
-    class: Types.ObjectId
-    forSchool: Types.ObjectId
-}
+import { ILearner } from "../types";
 
 const learnerSchema = new Schema<ILearner>({
     userDetails:{
@@ -22,7 +18,7 @@ const learnerSchema = new Schema<ILearner>({
         ref:'Class',
         required: true
     }
-})
+},{timestamps:true})
 
 const Learner = mongoose.model<ILearner>('Learner', learnerSchema)
 

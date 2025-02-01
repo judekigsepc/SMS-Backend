@@ -1,15 +1,7 @@
 
 import mongoose,{Schema, Types} from "mongoose";
 
-interface IUser {
-    firstName: string
-    lastName:string
-    otherNames?:string
-    password?:string
-    isAdmin: boolean
-    email:string
-    forSchool: Types.ObjectId
-}
+import { IUser } from "../types";
 
 //TODO: ADD PERMISSIONS TO USERS HERE
 
@@ -43,7 +35,7 @@ const userSchema = new Schema<IUser>({
         ref:'School',
         required:true
     }
-})
+},{timestamps:true})
 
 const User = mongoose.model<IUser>('User', userSchema)
 

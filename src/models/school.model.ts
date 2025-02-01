@@ -1,19 +1,7 @@
 
 import mongoose,{Schema,Types} from "mongoose";
 
-type EducationLevels = 'nursery' | 'primary' | 'secondary' | 'tertiary' | 'other'
-
-interface ISchool {
-    name:string
-    logoUrl:string
-    address:string
-    contactEmail:string,
-    yearOfEstablishment:number
-    schoolType:'private' | 'government' | 'NGO'
-    educationLevels: EducationLevels | EducationLevels[]
-    phoneNumbers: [string]
-    otherInfo:object
-}
+import { ISchool } from "../types";
 
 const schoolSchema = new Schema<ISchool>({
     name:{

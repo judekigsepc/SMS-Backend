@@ -1,11 +1,6 @@
 import mongoose,{Schema,Types} from "mongoose";
 
-interface ITeacher {
-    userDetails:Types.ObjectId
-    classes: Types.ObjectId []
-    subjects: Types.ObjectId []
-    forSchool: Types.ObjectId
-}
+import { ITeacher } from "../types";
 
 const teacherSchema = new Schema<ITeacher>({
     userDetails: {
@@ -28,7 +23,7 @@ const teacherSchema = new Schema<ITeacher>({
         ref:'School',
         required: true
     }
-})
+},{timestamps:true})
 
 const Teacher = mongoose.model<ITeacher>('Teacher', teacherSchema)
 

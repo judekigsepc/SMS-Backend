@@ -1,10 +1,6 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-interface IParent {
-    userDetails: Types.ObjectId
-    forLearner: Types.ObjectId
-    forSchool: Types.ObjectId
-}
+import { IParent } from "../types";
 
 const parentSchema = new Schema<IParent>({
     userDetails:{
@@ -22,7 +18,7 @@ const parentSchema = new Schema<IParent>({
         ref:'School',
         required:true
     }
-})
+},{timestamps:true})
 
 const Parent = mongoose.model<IParent>('Parent', parentSchema)
 

@@ -1,9 +1,6 @@
 import mongoose,{Schema, Types} from "mongoose"
 
-interface ISubject {
-    name:string,
-    forSchool:Types.ObjectId
-}
+import { ISubject } from "../types"
 
 const subjectSchema = new Schema<ISubject>({
     name:{
@@ -15,7 +12,7 @@ const subjectSchema = new Schema<ISubject>({
         ref:'School',
         required:true
     }
-})
+},{timestamps:true})
 
 const Subject = mongoose.model<ISubject>('Subject', subjectSchema)
 

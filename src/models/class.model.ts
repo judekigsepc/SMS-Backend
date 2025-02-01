@@ -1,11 +1,6 @@
 
 import mongoose,{Schema, Types} from "mongoose";
-
-interface IClass {
-    name:string
-    forSchool:Types.ObjectId
-    subjects: Types.ObjectId []
-}
+import { IClass } from "../types";
 
 const classSchema = new Schema<IClass>({
     name: {
@@ -21,7 +16,7 @@ const classSchema = new Schema<IClass>({
         type:[Schema.Types.ObjectId],
         required:true
     }
-})
+},{timestamps:true})
 
 const Class = mongoose.model<IClass>('Class', classSchema)
 
