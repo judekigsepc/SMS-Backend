@@ -6,8 +6,8 @@ const schoolRouter = Router()
 
 schoolRouter.get('/', getAllSchools)
 schoolRouter.get('/:id', getSingleSchool)
-schoolRouter.post('/',addSchool)
-schoolRouter.put('/:id',updateSchool)
+schoolRouter.post('/', imageUploader().single('logo') ,addSchool)
+schoolRouter.put('/:id',imageUploader().single('logo'),updateSchool)
 schoolRouter.delete('/:id', deleteSchool)
 
 export default schoolRouter

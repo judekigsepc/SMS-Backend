@@ -23,4 +23,8 @@ export const imageUploader = () => {
     return multer({storage})
 }
 
+// export const documentUploader = () => {
+
+// }
+
 

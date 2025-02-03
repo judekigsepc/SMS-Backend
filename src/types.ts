@@ -28,11 +28,11 @@ type EducationLevels = 'nursery' | 'primary' | 'secondary' | 'tertiary' | 'other
 
 export interface ISchool {
     name:string
-    logoUrl:string
+    logo:string
     address:string
     contactEmail:string,
     yearOfEstablishment:number
-    schoolType:'private' | 'government' | 'NGO'
+    schoolType:'private' | 'government' | 'NGO' | 'other'
     educationLevels: EducationLevels | EducationLevels[]
     phoneNumbers: [string]
     otherInfo:object

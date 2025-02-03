@@ -11,12 +11,16 @@ const port = process.env.PORT
 const dbConnect = async ():Promise<void> => {
       try {
         console.log('Connecting to database')
-        if(dbUrl) {
-            await mongoose.connect(dbUrl)
+
+        if(!dbUrl) {
+          console.log('DATABASE URL NOT FOUND')
+          return
+        }
+
+        await mongoose.connect(dbUrl)
             console.log('Connected to database successfuly')
             return
-        }
-        console.log('DATABASE URL NOT FOUND')
+        
       }catch(err){
         console.error(err)
         return
@@ -24,6 +28,9 @@ const dbConnect = async ():Promise<void> => {
 }
 
 await dbConnect()
+
+app.use(express.json())
+app.use(express.urlencoded())
 
 app.get('/', (req:Request, res:Response) => {
         res.status(200).send('School management system server up and running')

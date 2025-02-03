@@ -37,17 +37,17 @@ const educationLevelsSchema = z.union([
 // School schema
 export const iSchoolSchema = z.object({
   name: z.string().min(1, { message: "School name is required." }),
-  logoUrl: z.string().url({ message: "Invalid logo URL." }),
+  // logoUrl: z.string().url({ message: "Invalid logo URL." }), lOGO URL ISNT VALIDATED
   address: z.string().min(1, { message: "Address is required." }),
   contactEmail: z.string().email({ message: "Invalid email format." }),
-  yearOfEstablishment: z.number().int().min(1900, { message: "Year of establishment must be a valid year." }),
+  yearOfEstablishment: z.string().or(z.number().int().min(1900, { message: "Year of establishment must be a valid year." })),
   schoolType: z.union([
     z.literal("private"),
     z.literal("government"),
     z.literal("NGO"),
   ]),
   educationLevels: z.union([educationLevelsSchema, z.array(educationLevelsSchema)]),
-  phoneNumbers: z.tuple([z.string().min(1, { message: "Phone number is required." })]),
+  phoneNumbers: z.array(z.string({message:'Phone Number should be string'})),
   otherInfo: z.object({}).optional(),
 });
 

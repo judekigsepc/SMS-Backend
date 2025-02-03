@@ -8,7 +8,7 @@ const schoolSchema = new Schema<ISchool>({
         type:String,
         required:true
     },
-    logoUrl: {
+    logo: {
         type:String,
         default:''
     },
@@ -26,7 +26,7 @@ const schoolSchema = new Schema<ISchool>({
     },
     schoolType: {
         type:String,
-        enum: ['private','government','NGO']
+        enum: ['private','government','NGO','other']
     },
     educationLevels: {
         type: [String],
@@ -39,7 +39,7 @@ const schoolSchema = new Schema<ISchool>({
     }, 
     otherInfo: {
         type:Object,
-        required:true
+        default: {}
     }
 },{timestamps:true})
 

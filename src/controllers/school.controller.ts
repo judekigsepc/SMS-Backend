@@ -1,7 +1,7 @@
 
 import { Request, Response } from "express";
 import School from "../models/school.model";
-import { crudErrorHandler, crudResultHandler } from "../utils/handler.utils";
+import { crudErrorHandler, crudResultHandler, fileDeleteHandler } from "../utils/handler.utils";
 import { validateRequestBody } from "../utils/validation/validate";
 
 export const getAllSchools = async (req:Request, res:Response):Promise<void> => {
@@ -21,6 +21,7 @@ export const getAllSchools = async (req:Request, res:Response):Promise<void> => 
 
 export const getSingleSchool = async (req:Request, res:Response):Promise<void> => {
     try {
+        console.log(req.body)
         const {id} = req.params 
 
         const school = await School.findById(id).lean()
@@ -40,11 +41,14 @@ export const addSchool = async (req:Request, res:Response):Promise<void> => {
     try {
         validateRequestBody('creation','school',req)
 
+        req.body.logo = req.file?.filename
+
         const addedSchool = await School.create(req.body)
 
         return crudResultHandler(200,'School added successfuly',addedSchool,res)
 
     }catch(err: Error | unknown) {
+        fileDeleteHandler('images', req?.file?.filename)
         return crudErrorHandler(500,'School addition failed',err,res)
     }
 }
@@ -59,6 +63,7 @@ export const deleteSchool = async (req:Request, res:Response):Promise<void> => {
         }
 
         const deletedSchool = await School.findByIdAndDelete(id).lean()
+        fileDeleteHandler('images',schoolToDelete.logo)
 
         return crudResultHandler(200,'School deleted successfuly',deletedSchool,res)
 
@@ -75,14 +80,21 @@ export const updateSchool = async (req:Request, res:Response):Promise<void> => {
 
         const schoolToUpdate = await School.findById(id)
         if(!schoolToUpdate) {
+            fileDeleteHandler('images',req.file?.filename)
             return crudErrorHandler(404,'School Update failed',{error:'School not found for Update'},res)
         }
         
-        const updatedSchool = await School.findByIdAndUpdate(id,req.body,{new:true})
+        if(req.file) {
+            req.body.logo = req.file?.filename
+            console.log(req.body.logo)
+        }
 
+        const updatedSchool = await School.findByIdAndUpdate(id,req.body,{new:true})
+        fileDeleteHandler('images',schoolToUpdate.logo)
         return crudResultHandler(201,'School updated successfuly',updatedSchool,res)
 
     }catch(err: Error | unknown) {
+        fileDeleteHandler('images',req.file?.filename)
         return crudErrorHandler(500,'School update failed',err,res)
     }
 }
