@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express'
 import mongoose from 'mongoose'
 
 import schoolRouter from './routes/school.route'
+import adminRouter from './routes/admin.route'
 
 const app = express()
 
@@ -37,6 +38,7 @@ app.get('/', (req:Request, res:Response) => {
 })
 
 app.use('/api/schools', schoolRouter)
+app.use('/api/admin',adminRouter)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}`)

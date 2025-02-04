@@ -1,7 +1,7 @@
 import z,{ ZodError, ZodSchema } from "zod";
 import { Request } from "express";
 
-import { iClassSchema, 
+import { iAdminSchema, iClassSchema, 
     iConfigSchema, 
     iLearnerSchema, 
     iParentSchema, 
@@ -24,6 +24,7 @@ export const validationSchemaMap= {
     'teacher': iTeacherSchema,
     'term': iTermSchema,
     'user': iUserSchema,
+    'admin': iAdminSchema
   };
 
 export type ValidationTypes = keyof typeof validationSchemaMap

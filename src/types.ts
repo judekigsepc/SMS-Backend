@@ -70,3 +70,12 @@ export interface IUser {
     email:string
     forSchool: Types.ObjectId
 }
+
+export interface IAdmin {
+    firstName: string
+    lastName: string
+    email:string
+    phoneNumber:string
+    password:string
+    avatar:string
+}

@@ -90,7 +90,7 @@ export const updateSchool = async (req:Request, res:Response):Promise<void> => {
         }
 
         const updatedSchool = await School.findByIdAndUpdate(id,req.body,{new:true})
-        fileDeleteHandler('images',schoolToUpdate.logo)
+        req.file? fileDeleteHandler('images',schoolToUpdate.logo): ''
         return crudResultHandler(201,'School updated successfuly',updatedSchool,res)
 
     }catch(err: Error | unknown) {
