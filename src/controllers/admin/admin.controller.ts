@@ -8,6 +8,14 @@ export const createAdmin = async (req:Request, res:Response):Promise<void> => {
        try {
           validateRequestBody('creation','admin',req)
 
+          const {userName} = req.body
+
+          const existingUser = await Admin.findOne({userName})
+          
+          if(existingUser) {
+            throw new Error('Admin with the same username already exists')
+          }
+
           if(req.file) {
              req.body.avatar = req.file.filename
           }

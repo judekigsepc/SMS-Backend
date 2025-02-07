@@ -10,7 +10,8 @@ import { iAdminSchema, iClassSchema,
     iSubjectSchema, 
     iTeacherSchema, 
     iTermSchema, 
-    iUserSchema } from "./schemas"
+    iUserSchema, 
+    adminLoginSchema} from "./schemas"
 
 
 export const validationSchemaMap= {
@@ -24,7 +25,8 @@ export const validationSchemaMap= {
     'teacher': iTeacherSchema,
     'term': iTermSchema,
     'user': iUserSchema,
-    'admin': iAdminSchema
+    'admin': iAdminSchema,
+    'admin-login': adminLoginSchema
   };
 
 export type ValidationTypes = keyof typeof validationSchemaMap
@@ -55,3 +57,32 @@ export const validateRequestBody = (validationType:'creation'|'update',whatToVal
         throw new Error(`Unknown error occured during ${whatToValidate} validation. Please check your values`)
     }
 }
+
+export  const checkEnvironmentVairables = (varableList: string []) => {
+
+        varableList.forEach((envVariableName) => {
+            const envVariable = process.env[envVariableName]
+            if(!envVariable) {
+                throw new Error(`${envVariableName} environment variable is missing `)
+            } 
+        })
+}  
+
+// export const validateLoginCredentials = (req:Request) => {
+//     try {
+//       userLoginSchema.parse(req.body)
+//       return
+//     }catch(err: unknown) {
+//       if(err instanceof ZodError) {
+//         const message = err.errors
+//             .map(e => `${e.path.join(".")}: ${e.message}`) // Include field name
+//             .join(", ");
+        
+//         throw new Error(`Validation failed: ${message}`);
+//       }
+
+//       throw new Error(`Unknown error occured during login credential validation. Please check your inputs`)
+
+//     }
+// }
+ 

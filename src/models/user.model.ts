@@ -1,7 +1,7 @@
 
 import mongoose,{Schema, Types} from "mongoose";
 
-import { IUser } from "../types";
+import { IUser } from "../types/types";
 
 //TODO: ADD PERMISSIONS TO USERS HERE
 

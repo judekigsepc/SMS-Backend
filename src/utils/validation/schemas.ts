@@ -92,8 +92,21 @@ export const iUserSchema = z.object({
 export const iAdminSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
-  password: z.string().min(6, "Password must be at least 6 characters long"), 
+  password: z.string().min(8, "Password must be at least 8 characters long"), 
   email: z.string().email("Invalid email format"),
   phoneNumber: z.string().min(10, "Phone number must be valid"),
 });
 
+// export const userLoginSchema = z.object({
+//   email: z.string({message:'Email address must be provided and should be string'}).email({message:'You must provide a valid email'}).optional(),
+//   phoneNumber: z.string({message:'Phone number must be provided and should be string'}).optional(),
+//   password:z.string({message:'Password must be provided and should be a string'})
+// }).refine((data) => data.email || data.phoneNumber, {
+//       message:'Either a email or phone number must be provided for login',
+//       path:['email','phoneNumber']
+// })
+
+export const adminLoginSchema = z.object({
+  userName: z.string({message:'Username is required and should be string'}),
+  password:z.string({message:'Password required and should be string'})
+})

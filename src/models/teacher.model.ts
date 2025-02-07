@@ -1,6 +1,6 @@
 import mongoose,{Schema,Types} from "mongoose";
 
-import { ITeacher } from "../types";
+import { ITeacher } from "../types/types";
 
 const teacherSchema = new Schema<ITeacher>({
     userDetails: {

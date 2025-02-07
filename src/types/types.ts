@@ -1,7 +1,7 @@
-import { Types } from "mongoose"
+import { Document, Types } from "mongoose"
 
 //Class interface
-export interface IClass {
+export interface IClass  extends Document{
     name:string
     forSchool:Types.ObjectId
     subjects: Types.ObjectId []
@@ -71,11 +71,12 @@ export interface IUser {
     forSchool: Types.ObjectId
 }
 
-export interface IAdmin {
+export interface IAdmin  extends Document{
     firstName: string
     lastName: string
     email:string
     phoneNumber:string
     password:string
     avatar:string
+    userName: string
 }

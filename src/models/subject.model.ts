@@ -1,6 +1,6 @@
 import mongoose,{Schema, Types} from "mongoose"
 
-import { ISubject } from "../types"
+import { ISubject } from "../types/types"
 
 const subjectSchema = new Schema<ISubject>({
     name:{

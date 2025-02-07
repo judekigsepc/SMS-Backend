@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
-import { IAdmin } from "../types";
+import { IAdmin } from "../types/types";
+import { string } from "zod";
 
 const adminSchema = new Schema<IAdmin>({
       firstName: {
@@ -21,6 +22,11 @@ const adminSchema = new Schema<IAdmin>({
       phoneNumber: {
         type:String,
         required:true
+      },
+      userName: {
+          type:String,
+          unique:true,
+          required:true
       },
       avatar: {
         type:String,

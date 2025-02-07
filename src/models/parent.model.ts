@@ -1,6 +1,6 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-import { IParent } from "../types";
+import { IParent } from "../types/types";
 
 const parentSchema = new Schema<IParent>({
     userDetails:{
