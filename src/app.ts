@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express'
 import mongoose from 'mongoose'
 
 import schoolRouter from './routes/school.route'
-import adminRouter from './routes/admin.route'
+import adminRouter from './routes/admin/admin.route'
 import { checkEnvironmentVairables } from './utils/validation/validate'
 
 const envVariableArray = ['JWT_SECRET','DB_URL','PORT']

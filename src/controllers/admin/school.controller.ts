@@ -1,8 +1,8 @@
 
 import { Request, Response } from "express";
-import School from "../models/school.model";
-import { crudErrorHandler, crudResultHandler, fileDeleteHandler } from "../utils/handler.utils";
-import { validateRequestBody } from "../utils/validation/validate";
+import School from "../../models/school.model";
+import { crudErrorHandler, crudResultHandler, fileDeleteHandler } from "../../utils/handler.utils";
+import { validateRequestBody } from "../../utils/validation/validate";
 
 export const getAllSchools = async (req:Request, res:Response):Promise<void> => {
        try {

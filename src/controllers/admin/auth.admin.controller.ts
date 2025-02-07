@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { IAdmin } from "../../types/types";
 import Admin from '../../models/admin.model'
 import bcrypt from 'bcrypt'
-import {crudErrorHandler} from '../../utils/handler.utils'
+import {crudErrorHandler, crudResultHandler, fileDeleteHandler} from '../../utils/handler.utils'
 import jwt from 'jsonwebtoken'
 import { validateRequestBody } from "../../utils/validation/validate";
 
@@ -31,18 +31,53 @@ export const adminLogin = async (req:Request, res: Response): Promise<void> => {
     }
 }
 
-const adminSelfUpdate = async (req:Request, res: Response): Promise<void> => {
+export const adminSelfUpdate = async (req:Request, res: Response): Promise<void> => {
     try {
+        validateRequestBody('update','admin-login',req)
+
+        const {id} = req.user
+        console.log(id)
+
+        const adminToUpdate = await Admin.findById(id)
+
+        if(!adminToUpdate) {
+            fileDeleteHandler('images',req.file?.filename)
+            return crudErrorHandler(404,'Admin update failed',{err:'Admin account not found'},res)
+        }
+            
+        req.file ? req.body.avatar = req.file.filename: ''
+        
+        if(req.body.password) {
+            req.body.password = await bcrypt.hash(req.body.password, 10)
+        }
+
+        const updatedAdmin = await Admin.findByIdAndUpdate(id,req.body,{new:true})
+
+        req.file? fileDeleteHandler('images',adminToUpdate.avatar): ''
+
+        crudResultHandler(200,'Admin updated successfuly',updatedAdmin,res)
 
     }catch(err: Error | unknown) {
-        
+        return crudErrorHandler(500,'Admin self update failed',err,res)
     }
 }
 
-const adminSelfDelete = async (req:Request, res: Response): Promise<void> => {
+export const adminSelfDelete = async (req:Request, res: Response): Promise<void> => {
     try {
+        const {id} = req.user
+
+       const adminToDelete = await Admin.findById(id)
+
+       if(!adminToDelete) {
+        return crudErrorHandler(404,'Admin deletion failed- Admin account not found',{err:'Admin account not found'},res)
+       }
+
+       const deletedAdmin = await Admin.findByIdAndDelete(id)
+       fileDeleteHandler('images',deletedAdmin?.avatar)
+
+       crudResultHandler(200,'Admin deleted successfuly', deletedAdmin,res)
 
     }catch(err: Error | unknown) {
-        
+        crudErrorHandler(500,'Admin deletion failed',err,res)
     }
 }

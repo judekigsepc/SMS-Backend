@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addSchool, deleteSchool, getAllSchools, getSingleSchool, updateSchool } from "../controllers/school.controller";
+import { addSchool, deleteSchool, getAllSchools, getSingleSchool, updateSchool } from "../controllers/admin/school.controller";
 import { imageUploader } from "../middleware/uploader.middleware";
 import { superAdminOnly } from "../middleware/admin/admin.auth.middleware";
 

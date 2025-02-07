@@ -47,6 +47,10 @@ export const updateAdmin = async (req:Request, res:Response):Promise<void> => {
         }
             
         req.file ? req.body.avatar = req.file.filename: ''
+        
+        if(req.body.password) {
+            req.body.password = await bcrypt.hash(req.body.password, 10)
+        }
 
         const updatedAdmin = await Admin.findByIdAndUpdate(id,req.body,{new:true})
 

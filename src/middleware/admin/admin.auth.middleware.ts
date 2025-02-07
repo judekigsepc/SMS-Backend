@@ -21,7 +21,8 @@ export const superAdminOnly = (req:Request, res:Response, next: NextFunction):vo
         if(!payload.isSuperAdmin) {
            return crudErrorHandler(403,'Access denied',{err: 'User is not admin'},res)
         }
-
+ 
+        req.user = payload
         next()
 
     }catch(err: unknown) {
