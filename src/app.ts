@@ -32,7 +32,7 @@ const dbConnect = async ():Promise<void> => {
       }
 }
 
-await dbConnect()
+dbConnect()
 
 app.use(express.json())
 app.use(express.urlencoded())

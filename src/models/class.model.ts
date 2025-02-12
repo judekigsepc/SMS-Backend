@@ -15,7 +15,10 @@ const classSchema = new Schema<IClass>({
     subjects: {
         type:[Schema.Types.ObjectId],
         required:true
-    }
+    },
+    streams: {
+        type:[Schema.Types.ObjectId]
+    },
 },{timestamps:true})
 
 const Class = mongoose.model<IClass>('Class', classSchema)

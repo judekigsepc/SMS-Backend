@@ -5,6 +5,7 @@ export interface IClass  extends Document{
     name:string
     forSchool:Types.ObjectId
     subjects: Types.ObjectId []
+    streams: Types.ObjectId []
 }
 
 //Configuration interface
