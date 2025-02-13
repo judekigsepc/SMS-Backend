@@ -1,6 +1,6 @@
 
 import mongoose,{Schema, Types} from "mongoose";
-import { IClass } from "../types/types";
+import { IClass } from "../types/types.js";
 
 const classSchema = new Schema<IClass>({
     name: {

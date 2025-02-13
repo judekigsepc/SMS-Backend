@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
       "target": "ES6", // Specifies ECMAScript target version
-      "module": "CommonJS", // Module system to use
+      "module": "NodeNext", // Module system to use
       "strict": true, // Enable all strict type-checking options
       "outDir": "./dist", // Output directory for compiled files
       "rootDir": "./src", // Root directory of TypeScript source files

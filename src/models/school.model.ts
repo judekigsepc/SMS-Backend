@@ -1,7 +1,7 @@
 
 import mongoose,{Schema,Types} from "mongoose";
 
-import { ISchool } from "../types/types";
+import { ISchool } from "../types/types.js";
 
 const schoolSchema = new Schema<ISchool>({
     name:{

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import jwt, { JwtPayload } from 'jsonwebtoken'
-import { crudErrorHandler } from '../../utils/handler.utils'
+import { crudErrorHandler } from '../../utils/handler.utils.js'
 interface AdminPayload extends JwtPayload {
     id:string,
     isAdmin:boolean

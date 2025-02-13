@@ -1,6 +1,6 @@
 import mongoose, { Schema, Types } from "mongoose"
 
-import { IStream } from "../types/types"
+import { IStream } from "../types/types.js"
 
 const streamSchema = new Schema<IStream>({
     name:{

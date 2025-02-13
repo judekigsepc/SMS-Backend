@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { IAdmin } from "../../types/types";
-import Admin from '../../models/admin.model'
+import { IAdmin } from "../../types/types.js";
+import Admin from '../../models/admin.model.js'
 import bcrypt from 'bcrypt'
-import {crudErrorHandler, crudResultHandler, fileDeleteHandler} from '../../utils/handler.utils'
+import {crudErrorHandler, crudResultHandler, fileDeleteHandler} from '../../utils/handler.utils.js'
 import jwt from 'jsonwebtoken'
-import { validateRequestBody } from "../../utils/validation/validate";
+import { validateRequestBody } from "../../utils/validation/validate.js";
 
 export const adminLogin = async (req:Request, res: Response): Promise<void> => {
     try {

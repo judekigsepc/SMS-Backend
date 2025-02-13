@@ -1,6 +1,6 @@
 import mongoose, { Types,Schema } from "mongoose";
 
-import { ILearner } from "../types/types";
+import { ILearner } from "../types/types.js";
 
 const learnerSchema = new Schema<ILearner>({
     userDetails:{

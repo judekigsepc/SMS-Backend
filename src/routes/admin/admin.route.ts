@@ -1,9 +1,9 @@
 
 import { Router } from "express";
-import { createAdmin, deleteAdmin, getAllAdmins, getSingleAdmin, updateAdmin } from "../../controllers/admin/admin.controller";
-import { imageUploader } from "../../middleware/uploader.middleware";
-import { adminLogin, adminSelfDelete, adminSelfUpdate } from "../../controllers/admin/auth.admin.controller";
-import { superAdminOnly } from "../../middleware/admin/admin.auth.middleware";
+import { createAdmin, deleteAdmin, getAllAdmins, getSingleAdmin, updateAdmin } from "../../controllers/admin/admin.controller.js";
+import { imageUploader } from "../../middleware/uploader.middleware.js";
+import { adminLogin, adminSelfDelete, adminSelfUpdate } from "../../controllers/admin/auth.admin.controller.js";
+import { superAdminOnly } from "../../middleware/admin/admin.auth.middleware.js";
 
 const adminRouter = Router()
 

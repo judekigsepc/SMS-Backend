@@ -1,6 +1,6 @@
 import mongoose, {Types, Schema} from 'mongoose'
 
-import { ITerm } from '../types/types'
+import { ITerm } from '../types/types.js'
 
 const streamSchema = new Schema<ITerm>({
     name:{
