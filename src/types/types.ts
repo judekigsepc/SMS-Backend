@@ -39,6 +39,10 @@ export interface ISchool {
     otherInfo:object
 }
 
+export interface ISchoolAdmin {
+    userDetails: Types.ObjectId
+    role: string,
+}
 export interface IStream {
     name:string
     forSchool:Types.ObjectId
@@ -69,6 +73,7 @@ export interface IUser {
     password?:string
     isAdmin: boolean
     email:string
+    avatar:string
     forSchool: Types.ObjectId
 }
 

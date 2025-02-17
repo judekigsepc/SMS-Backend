@@ -82,11 +82,10 @@ export const iUserSchema = z.object({
   firstName: z.string().min(1, { message: "First name is required." }),
   lastName: z.string().min(1, { message: "Last name is required." }),
   otherNames: z.string().optional(),
-  password: z.string().min(6, { message: "Password must be at least 6 characters long." }).optional(),
-  isAdmin: z.boolean(),
+  password: z.string().min(8, { message: "Password must be at least 6 characters long." }).optional(),
   email: z.string().email({ message: "Invalid email format." }),
-  forSchool: z.instanceof(Types.ObjectId, { message: "Invalid school ID." }),
-});
+  // forSchool: z.instanceof(Types.ObjectId, { message: "Invalid school ID." }),
+}).passthrough();
 
 //Admin schema 
 export const iAdminSchema = z.object({
@@ -109,4 +108,8 @@ export const iAdminSchema = z.object({
 export const adminLoginSchema = z.object({
   userName: z.string({message:'Username is required and should be string'}),
   password:z.string({message:'Password required and should be string'})
+})
+
+export const schoolAdminSchema  = z.object({
+  role: z.string({message: 'School admin role is required and must be string'})
 })

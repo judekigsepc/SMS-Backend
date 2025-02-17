@@ -19,7 +19,7 @@ export const createAdmin = async (req:Request, res:Response):Promise<void> => {
           if(req.file) {
              req.body.avatar = req.file.filename
           }
-
+ 
           const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
           req.body.password = hashedPassword
@@ -28,6 +28,7 @@ export const createAdmin = async (req:Request, res:Response):Promise<void> => {
           crudResultHandler(201,'Admin created successfuly',createdAdmin,res)
 
        }catch(err:Error | unknown ) {
+        fileDeleteHandler('images',req.file?.filename)
           crudErrorHandler(500,'Admin user creation failed',err,res)
        }
 }

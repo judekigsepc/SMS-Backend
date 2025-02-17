@@ -3,6 +3,8 @@ import mongoose from 'mongoose'
 
 import schoolRouter from './routes/school.route.js'
 import adminRouter from './routes/admin/admin.route.js'
+import schoolAdminRouter from './routes/schoolAdmin.route.js'
+
 import { checkEnvironmentVairables } from './utils/validation/validate.js'
 
 const envVariableArray = ['JWT_SECRET','DB_URL','PORT']
@@ -43,6 +45,7 @@ app.get('/', (req:Request, res:Response) => {
 
 app.use('/api/schools', schoolRouter)
 app.use('/api/admin',adminRouter)
+app.use('/api/school_admins', schoolAdminRouter)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}`)

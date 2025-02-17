@@ -13,6 +13,9 @@ export const adminLogin = async (req:Request, res: Response): Promise<void> => {
         const {userName, password} = req.body
 
         const user = await Admin.findOne({userName})
+        if(!user) {
+            throw new Error('Super admin account not found')
+        }
 
         const userPayload = {id:user?._id, isSuperAdmin:true}
         const isPasswordValid = await bcrypt.compare(password, user? user.password : '')

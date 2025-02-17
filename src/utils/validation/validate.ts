@@ -11,7 +11,8 @@ import { iAdminSchema, iClassSchema,
     iTeacherSchema, 
     iTermSchema, 
     iUserSchema, 
-    adminLoginSchema} from "./schemas"
+    adminLoginSchema,
+    schoolAdminSchema} from "./schemas.js"
 
 
 export const validationSchemaMap= {
@@ -26,7 +27,8 @@ export const validationSchemaMap= {
     'term': iTermSchema,
     'user': iUserSchema,
     'admin': iAdminSchema,
-    'admin-login': adminLoginSchema
+    'admin-login': adminLoginSchema,
+    'school-admin': schoolAdminSchema
   };
 
 export type ValidationTypes = keyof typeof validationSchemaMap

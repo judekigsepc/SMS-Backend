@@ -1,7 +1,7 @@
 
 import mongoose,{Schema, Types} from "mongoose";
 
-import { IUser } from "../types/types";
+import { IUser } from "../types/types.js";
 
 //TODO: ADD PERMISSIONS TO USERS HERE
 
@@ -16,11 +16,6 @@ const userSchema = new Schema<IUser>({
     },
     otherNames: {
         type:String,
-        required:false
-    },
-    isAdmin: {
-        type:Boolean,
-        default:false
     },
     password: {
         type:String,
@@ -28,13 +23,18 @@ const userSchema = new Schema<IUser>({
     },
     email: {
         type:String,
+        unique:true,
+        default:''
+    },
+    avatar: {
+        type:String,
         default:''
     },
     forSchool: {
         type:Schema.Types.ObjectId,
         ref:'School',
         required:true
-    }
+    },
 },{timestamps:true})
 
 const User = mongoose.model<IUser>('User', userSchema)
