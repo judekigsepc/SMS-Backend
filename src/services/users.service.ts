@@ -40,7 +40,7 @@ export const updateUser = async (id: Types.ObjectId ,req:Request) => {
           }
 
           req.body.password = await bcrypt.hash(req.body.password, 10)
-          
+
          const updatedUserData = await User.findByIdAndUpdate(id,req.body, {new:true})
          
          fileDeleteHandler('images',userToUpdate.avatar)
@@ -53,7 +53,7 @@ export const updateUser = async (id: Types.ObjectId ,req:Request) => {
    }
 }
 
-export const deleteUser = async (id:string, req:Request) => {
+export const deleteUser = async (id:Types.ObjectId) => {
    try { 
 
       const userToDelete = await User.findById(id)
