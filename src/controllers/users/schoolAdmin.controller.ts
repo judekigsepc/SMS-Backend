@@ -3,22 +3,29 @@ import { validateRequestBody } from "../../utils/validation/validate.js";
 import { crudErrorHandler, crudResultHandler } from "../../utils/handler.utils.js";
 import SchoolAdmin from "../../models/users/schoolAdmin.model.js";
 import { createUser, deleteUser, updateUser } from "../../services/users.service.js";
+import User from "../../models/users/user.model.js";
+import { Document } from "mongoose";
 
 export const createSchoolAdmin = async (req: Request, res: Response) => {
+    let adminUserData: Document | undefined
     try {
-           req.body.isAdmin = true
-           const adminUserData = await createUser(req)
+           req.body.permissions = ['all']
+           req.body.role = 'admin'
+
+           adminUserData = await createUser(req)
+
            validateRequestBody('creation', 'school-admin',req)
 
-           const {role} = req.body
-
-           const admin = (await SchoolAdmin.create({userDetails: adminUserData._id, role}))
+           const admin = (await SchoolAdmin.create({userDetails: adminUserData._id, ...req.body}))
 
            const createdAdmin = await SchoolAdmin.findById(admin._id)
                                      .populate('userDetails', 'firstName lastName email forSchool')
            return crudResultHandler(201,'School admin created successfuly',createdAdmin,res)
     }
     catch(error: unknown) {
+        if (adminUserData) {
+            await User.findByIdAndDelete(adminUserData._id)
+        }
         return crudErrorHandler(500,'Failed to create school admin',error,res)
     }
 }

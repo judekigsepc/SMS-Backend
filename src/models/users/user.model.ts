@@ -2,7 +2,6 @@
 import mongoose,{Schema, Types} from "mongoose";
 
 import { IUser } from "../../types/types.js";
-import { boolean } from "zod";
 
 //TODO: ADD PERMISSIONS TO USERS HERE
 
@@ -31,15 +30,24 @@ const userSchema = new Schema<IUser>({
         type:String,
         default:''
     },
-    isAdmin: {
-        type:Boolean,
-        default: false
-    },
     forSchool: {
         type:Schema.Types.ObjectId,
         ref:'School',
         required:true
     },
+    studentId: {
+        type: String,  
+    },
+    role: {
+        type: [String],
+        enum: ['admin','teacher'],
+        required: true
+    },
+    permissions: {
+        type: [String],
+        enum: ['all'],
+        required: true
+    }
 },{timestamps:true})
 
 const User = mongoose.model<IUser>('User', userSchema)

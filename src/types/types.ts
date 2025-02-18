@@ -41,7 +41,7 @@ export interface ISchool {
 
 export interface ISchoolAdmin {
     userDetails: Types.ObjectId
-    role: string,
+    schoolRole: string,
 }
 export interface IStream {
     name:string
@@ -66,6 +66,8 @@ export interface ITerm {
     forSchool:Types.ObjectId
 }
 
+type ValidUserRoles = 'admin'|'teacher'|'learner'|'parent'
+type ValidPermissions = 'all'
 export interface IUser {
     firstName: string
     lastName:string
@@ -75,6 +77,9 @@ export interface IUser {
     email:string
     avatar:string
     forSchool: Types.ObjectId
+    role: ValidUserRoles []
+    permissions: ValidPermissions []
+    studentId: string
 }
 
 export interface IAdmin  extends Document{

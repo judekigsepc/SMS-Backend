@@ -9,7 +9,7 @@ const schoolAdmin = new Schema<ISchoolAdmin>({
        ref:'User',
        required:true
     },
-    role: {
+    schoolRole: {
         type: String,
         required: true
     }

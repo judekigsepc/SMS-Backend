@@ -12,7 +12,8 @@ import { iAdminSchema, iClassSchema,
     iTermSchema, 
     iUserSchema, 
     adminLoginSchema,
-    schoolAdminSchema} from "./schemas.js"
+    schoolAdminSchema,
+    userLoginSchema} from "./schemas.js"
 
 
 export const validationSchemaMap= {
@@ -26,6 +27,7 @@ export const validationSchemaMap= {
     'teacher': iTeacherSchema,
     'term': iTermSchema,
     'user': iUserSchema,
+    'user-login': userLoginSchema,
     'admin': iAdminSchema,
     'admin-login': adminLoginSchema,
     'school-admin': schoolAdminSchema
@@ -69,22 +71,3 @@ export  const checkEnvironmentVairables = (varableList: string []) => {
             } 
         })
 }  
-
-// export const validateLoginCredentials = (req:Request) => {
-//     try {
-//       userLoginSchema.parse(req.body)
-//       return
-//     }catch(err: unknown) {
-//       if(err instanceof ZodError) {
-//         const message = err.errors
-//             .map(e => `${e.path.join(".")}: ${e.message}`) // Include field name
-//             .join(", ");
-        
-//         throw new Error(`Validation failed: ${message}`);
-//       }
-
-//       throw new Error(`Unknown error occured during login credential validation. Please check your inputs`)
-
-//     }
-// }
- 

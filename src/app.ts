@@ -6,6 +6,7 @@ import adminRouter from './routes/admin/admin.route.js'
 import schoolAdminRouter from './routes/schoolAdmin.route.js'
 
 import { checkEnvironmentVairables } from './utils/validation/validate.js'
+import authRouter from './routes/auth.route.js'
 
 const envVariableArray = ['JWT_SECRET','DB_URL','PORT']
 checkEnvironmentVairables(envVariableArray)
@@ -46,6 +47,7 @@ app.get('/', (req:Request, res:Response) => {
 app.use('/api/schools', schoolRouter)
 app.use('/api/admin',adminRouter)
 app.use('/api/school_admins', schoolAdminRouter)
+app.use('/api/auth', authRouter)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}`)
