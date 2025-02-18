@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { validateRequestBody } from "../../utils/validation/validate.js";
 import { crudErrorHandler, crudResultHandler } from "../../utils/handler.utils.js";
-import SchoolAdmin from "../../models/schoolAdmin.model.js";
+import SchoolAdmin from "../../models/users/schoolAdmin.model.js";
 import { createUser, deleteUser, updateUser } from "../../services/users.service.js";
 
 export const createSchoolAdmin = async (req: Request, res: Response) => {

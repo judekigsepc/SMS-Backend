@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { IAdmin } from "../../types/types.js";
-import Admin from '../../models/admin.model.js'
+import Admin from '../../models/admin/admin.model.js'
 import bcrypt from 'bcrypt'
 import {crudErrorHandler, crudResultHandler, fileDeleteHandler} from '../../utils/handler.utils.js'
 import jwt from 'jsonwebtoken'

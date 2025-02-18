@@ -1,4 +1,4 @@
-import User from "../models/user.model.js"
+import User from "../models/users/user.model.js"
 import { Request } from "express"
 import { validateRequestBody } from "../utils/validation/validate.js"
 import { fileDeleteHandler } from "../utils/handler.utils.js"

@@ -1,6 +1,6 @@
 
 import { Request, Response } from "express";
-import School from "../../models/school.model.js";
+import School from "../../models/academics/school.model.js";
 import { crudErrorHandler, crudResultHandler, fileDeleteHandler } from "../../utils/handler.utils.js";
 import { validateRequestBody } from "../../utils/validation/validate.js";
 

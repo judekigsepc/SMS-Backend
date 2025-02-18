@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { crudErrorHandler, crudResultHandler, fileDeleteHandler } from "../../utils/handler.utils.js";
 import { validateRequestBody } from "../../utils/validation/validate.js";
 import bcrypt from 'bcrypt'
-import Admin from "../../models/admin.model.js";
+import Admin from "../../models/admin/admin.model.js";
 
 export const createAdmin = async (req:Request, res:Response):Promise<void> => {
        try {

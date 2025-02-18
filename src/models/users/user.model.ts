@@ -1,7 +1,8 @@
 
 import mongoose,{Schema, Types} from "mongoose";
 
-import { IUser } from "../types/types.js";
+import { IUser } from "../../types/types.js";
+import { boolean } from "zod";
 
 //TODO: ADD PERMISSIONS TO USERS HERE
 
@@ -29,6 +30,10 @@ const userSchema = new Schema<IUser>({
     avatar: {
         type:String,
         default:''
+    },
+    isAdmin: {
+        type:Boolean,
+        default: false
     },
     forSchool: {
         type:Schema.Types.ObjectId,
