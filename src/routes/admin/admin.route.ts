@@ -19,6 +19,4 @@ adminRouter.put('/:id', superAdminOnly, imageUploader().single('avatar'), update
 adminRouter.delete('/:id', superAdminOnly,deleteAdmin)
 
 
-
-
 export default adminRouter

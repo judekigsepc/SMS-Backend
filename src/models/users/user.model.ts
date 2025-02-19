@@ -36,7 +36,7 @@ const userSchema = new Schema<IUser>({
         required:true
     },
     studentId: {
-        type: String,  
+        type: String  
     },
     role: {
         type: [String],
