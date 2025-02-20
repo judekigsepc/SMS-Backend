@@ -1,4 +1,5 @@
 import { Document, Types } from "mongoose"
+import { JwtPayload } from "jsonwebtoken"
 
 //Class interface
 export interface IClass  extends Document{
@@ -66,8 +67,8 @@ export interface ITerm {
     forSchool:Types.ObjectId
 }
 
-type ValidUserRoles = 'admin'|'teacher'|'learner'|'parent'
-type ValidPermissions = 'all'
+export type ValidUserRoles = 'admin'|'teacher'|'learner'|'parent'
+export type ValidPermissions = 'all'
 export interface IUser {
     firstName: string
     lastName:string
@@ -90,4 +91,9 @@ export interface IAdmin  extends Document{
     password:string
     avatar:string
     userName: string
+}
+
+export interface UserPayload extends JwtPayload {
+    id: Types.ObjectId
+    role: ValidUserRoles
 }

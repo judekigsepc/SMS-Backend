@@ -1,9 +1,15 @@
-import User from "../models/users/user.model.js"
 import { Request } from "express"
 import { validateRequestBody } from "../utils/validation/validate.js"
 import { fileDeleteHandler } from "../utils/handler.utils.js"
-import { Types } from "mongoose"
+import { Model, Types } from "mongoose"
 import bcrypt from 'bcrypt'
+import { ValidUserRoles } from "../types/types.js"
+
+import User from "../models/users/user.model.js"
+import Teacher from "../models/users/teacher.model.js"
+import SchoolAdmin from "../models/users/schoolAdmin.model.js"
+import Learner from "../models/users/learner.model.js"
+import Parent from "../models/users/parent.model.js"
 
 export const createUser = async (req:Request) => {
        try {
@@ -66,6 +72,28 @@ export const deleteUser = async (id:Types.ObjectId) => {
 
       return deletedUser
 
+   }catch(err: unknown) {
+      throw err
+   }
+}
+
+export const getUserDetailsByRole = async (role:ValidUserRoles, id:Types.ObjectId) => {
+   try {
+        const userModelMap: Record <ValidUserRoles, Model<any>>= {
+         'admin': SchoolAdmin,
+         'teacher': Teacher,
+         'learner': Learner,
+         'parent' : Parent
+        }
+
+        const userData = await userModelMap[role].findOne({userDetails: id})
+                               .populate('userDetails')
+
+        if(!userData) {
+         throw new Error('User with provided credentials not found')
+        }
+
+        return userData
    }catch(err: unknown) {
       throw err
    }

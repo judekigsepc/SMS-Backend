@@ -3,24 +3,20 @@ import jwt, { JwtPayload } from 'jsonwebtoken'
 import { Types } from "mongoose";
 import { crudErrorHandler } from "../utils/handler.utils.js";
 import User from "../models/users/user.model.js";
+import { UserPayload } from "../types/types.js";
 
-interface UserPayload extends JwtPayload {
-       id: Types.ObjectId
-       role: string
-}
 
 export const authMiddleware = async (req:Request, res: Response, next: NextFunction) => {
        try {
-         const authHeader = req.headers.authorization
 
-         if(!authHeader) {
-              res.status(500).json({
-                    authError:'No token provided'
+         const token = req.cookies.token
+
+         if(!token) {
+              return res.status(401).json({
+                     message:'Acces denied',
+                     details:'No jwt token found'
               })
-              return
          }
-
-         const token = authHeader.split(" ")[1]
 
          const payload = jwt.verify(token, process.env.JWT_SECRET as string) as UserPayload
 
