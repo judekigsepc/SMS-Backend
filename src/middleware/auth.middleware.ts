@@ -1,36 +1,42 @@
 import { NextFunction, Request, Response } from "express";
-import jwt, { JwtPayload } from 'jsonwebtoken'
-import { Types } from "mongoose";
+import jwt from 'jsonwebtoken'
 import { crudErrorHandler } from "../utils/handler.utils.js";
 import User from "../models/users/user.model.js";
-import { UserPayload } from "../types/types.js";
+import { UserPayload, ValidPermissions } from "../types/types.js";
 
 
-export const authMiddleware = async (req:Request, res: Response, next: NextFunction) => {
+export const authenticateUser = async (req:Request, res: Response, next: NextFunction) => {
        try {
 
          const token = req.cookies.token
 
          if(!token) {
-              return res.status(401).json({
+              res.status(401).json({
                      message:'Acces denied',
                      details:'No jwt token found'
               })
+              return
          }
 
          const payload = jwt.verify(token, process.env.JWT_SECRET as string) as UserPayload
 
-         const userData = await User.find(payload.id)
+         const userData = await User.findOne({_id: payload.id})
+
+         if(!userData) {
+              throw new Error('User not found')
+         }
 
          req.user = userData
 
          next()
+         return
+
        }catch (err: unknown) {
-          return crudErrorHandler(403, 'Authentication failed', err, res)           
+          return crudErrorHandler(401, 'Authentication failed', err, res)           
        }
 }
 
-export const checkPermissions =  async (permission: string) => {
+export const checkPermissions =  (permission: ValidPermissions) => {
 return (req:Request, res:Response, next: NextFunction) => {
        try {
               if(!req.user) {
@@ -49,8 +55,9 @@ return (req:Request, res:Response, next: NextFunction) => {
               }
               
               next()
+              return
           }catch(err: unknown) {
-              return crudErrorHandler(403, 'Authentication failed', err, res)           
+              return crudErrorHandler(401, 'Authentication failed', err, res)           
           }    
 }
 }

@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { addSchool, deleteSchool, getAllSchools, getSingleSchool, updateSchool } from "../controllers/admin/school.controller.js";
-import { imageUploader } from "../middleware/uploader.middleware.js";
-import { superAdminOnly } from "../middleware/admin/admin.auth.middleware.js";
+import { addSchool, deleteSchool, getAllSchools, getSingleSchool, updateSchool } from "../../controllers/admin/school.controller.js";
+import { imageUploader } from "../../middleware/uploader.middleware.js";
+import { superAdminOnly } from "../../middleware/admin/admin.auth.middleware.js";
 
 const schoolRouter = Router()
 

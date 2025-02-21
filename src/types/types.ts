@@ -68,7 +68,15 @@ export interface ITerm {
 }
 
 export type ValidUserRoles = 'admin'|'teacher'|'learner'|'parent'
-export type ValidPermissions = 'all'
+
+export type ValidPermissions = 
+'all' | 
+'create_class' |
+'edit_class' |
+'delete_class'|
+'update_class'|
+'get_classes'|
+'create_subject'
 export interface IUser {
     firstName: string
     lastName:string
@@ -97,3 +105,4 @@ export interface UserPayload extends JwtPayload {
     id: Types.ObjectId
     role: ValidUserRoles
 }
+

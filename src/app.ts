@@ -3,12 +3,14 @@ import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 
-import schoolRouter from './routes/school.route.js'
+import schoolRouter from './routes/admin/school.route.js'
 import adminRouter from './routes/admin/admin.route.js'
-import schoolAdminRouter from './routes/schoolAdmin.route.js'
+import schoolAdminRouter from './routes/users/schoolAdmin.route.js'
+import authRouter from './routes/users/auth.route.js'
+import subjectRouter from './routes/academics/subject.route.js'
 
 import { checkEnvironmentVairables } from './utils/validation/validate.js'
-import authRouter from './routes/auth.route.js'
+
 
 
 const envVariableArray = ['JWT_SECRET','DB_URL','PORT']
@@ -60,6 +62,7 @@ app.use('/api/schools', schoolRouter)
 app.use('/api/admin',adminRouter)
 app.use('/api/school_admins', schoolAdminRouter)
 app.use('/api/auth', authRouter)
+app.use('/api/subjects', subjectRouter)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}`)

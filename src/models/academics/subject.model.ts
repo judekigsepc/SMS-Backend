@@ -5,7 +5,8 @@ import { ISubject } from "../../types/types.js"
 const subjectSchema = new Schema<ISubject>({
     name:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     forSchool:{
         type: Schema.Types.ObjectId,

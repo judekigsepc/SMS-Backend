@@ -4,7 +4,6 @@ import { Types } from "mongoose";
 // Class schema
 export const iClassSchema = z.object({
   name: z.string().min(1, { message: "Class name is required." }),
-  forSchool: z.instanceof(Types.ObjectId, { message: "Invalid school ID." }),
   subjects: z.array(z.instanceof(Types.ObjectId), { message: "Invalid subject IDs." }),
 });
 
@@ -15,14 +14,12 @@ export const iConfigSchema = z.object({});
 export const iLearnerSchema = z.object({
   userDetails: z.instanceof(Types.ObjectId, { message: "Invalid user details ID." }),
   class: z.instanceof(Types.ObjectId, { message: "Invalid class ID." }),
-  forSchool: z.instanceof(Types.ObjectId, { message: "Invalid school ID." }),
 });
 
 // Parent schema
 export const iParentSchema = z.object({
   userDetails: z.instanceof(Types.ObjectId, { message: "Invalid user details ID." }),
   forLearner: z.instanceof(Types.ObjectId, { message: "Invalid learner ID." }),
-  forSchool: z.instanceof(Types.ObjectId, { message: "Invalid school ID." }),
 });
 
 // Education levels schema
@@ -54,13 +51,11 @@ export const iSchoolSchema = z.object({
 // Stream schema
 export const iStreamSchema = z.object({
   name: z.string().min(1, { message: "Stream name is required." }),
-  forSchool: z.instanceof(Types.ObjectId, { message: "Invalid school ID." }),
 });
 
 // Subject schema
 export const iSubjectSchema = z.object({
-  name: z.string().min(1, { message: "Subject name is required." }),
-  forSchool: z.instanceof(Types.ObjectId, { message: "Invalid school ID." }),
+  name: z.string().min(1, { message: "Subject name is required." })
 });
 
 // Teacher schema
@@ -68,13 +63,11 @@ export const iTeacherSchema = z.object({
   userDetails: z.instanceof(Types.ObjectId, { message: "Invalid user details ID." }),
   classes: z.array(z.instanceof(Types.ObjectId), { message: "Invalid class IDs." }),
   subjects: z.array(z.instanceof(Types.ObjectId), { message: "Invalid subject IDs." }),
-  forSchool: z.instanceof(Types.ObjectId, { message: "Invalid school ID." }),
 });
 
 // Term schema
 export const iTermSchema = z.object({
   name: z.string().min(1, { message: "Term name is required." }),
-  forSchool: z.instanceof(Types.ObjectId, { message: "Invalid school ID." }),
 });
 
 // User schema
