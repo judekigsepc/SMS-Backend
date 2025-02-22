@@ -6,7 +6,6 @@ const subjectSchema = new Schema<ISubject>({
     name:{
         type:String,
         required:true,
-        unique:true
     },
     forSchool:{
         type: Schema.Types.ObjectId,

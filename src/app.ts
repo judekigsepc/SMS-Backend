@@ -10,6 +10,7 @@ import authRouter from './routes/users/auth.route.js'
 import subjectRouter from './routes/academics/subject.route.js'
 
 import { checkEnvironmentVairables } from './utils/validation/validate.js'
+import classRouter from './routes/academics/class.route.js'
 
 
 
@@ -58,11 +59,12 @@ app.get('/', (req:Request, res:Response) => {
         res.status(200).send('School management system server up and running')
 })
 
-app.use('/api/schools', schoolRouter)
 app.use('/api/admin',adminRouter)
+app.use('/api/schools', schoolRouter)
 app.use('/api/school_admins', schoolAdminRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/subjects', subjectRouter)
+app.use('/api/classes', classRouter)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}`)

@@ -75,8 +75,12 @@ export type ValidPermissions =
 'edit_class' |
 'delete_class'|
 'update_class'|
-'get_classes'|
-'create_subject'
+'view_classes'|
+'create_subject'|
+'edit_subject' |
+'delete_subject'|
+'view_subjects'
+
 export interface IUser {
     firstName: string
     lastName:string

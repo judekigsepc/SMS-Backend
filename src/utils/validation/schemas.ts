@@ -4,7 +4,7 @@ import { Types } from "mongoose";
 // Class schema
 export const iClassSchema = z.object({
   name: z.string().min(1, { message: "Class name is required." }),
-  subjects: z.array(z.instanceof(Types.ObjectId), { message: "Invalid subject IDs." }),
+  subjects: z.array(z.string(), { message: "Invalid subject IDs." }),
 });
 
 // Configuration schema

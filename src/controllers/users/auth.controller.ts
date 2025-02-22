@@ -28,7 +28,7 @@ export const loginUser = async (req: Request, res:Response) => {
 
         const isPasswordValid = await compare(password, user.password as string)
         if(!isPasswordValid){
-            throw new Error('Invalid password provided. Check your password and try again')
+            throw new Error('Wrong password provided. Check your password and try again')
         }
          
         const token = jwt.sign({id: user._id, role: user.role},process.env.JWT_SECRET as string,{expiresIn: '12h'})
