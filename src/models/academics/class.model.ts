@@ -14,10 +14,11 @@ const classSchema = new Schema<IClass>({
     },
     subjects: {
         type:[Schema.Types.ObjectId],
-        required:true
+        ref:'Subject'
     },
     streams: {
-        type:[Schema.Types.ObjectId]
+        type:[Schema.Types.ObjectId],
+        ref:'Stream'
     },
 },{timestamps:true})
 

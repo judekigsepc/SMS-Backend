@@ -3,8 +3,6 @@ import { validateRequestBody } from "../../utils/validation/validate.js";
 import { crudErrorHandler, crudResultHandler } from "../../utils/handler.utils.js";
 import Subject from "../../models/academics/subject.model.js";
 
-
-
 export const createSubject = async (req:Request, res: Response) => {
     try {
         validateRequestBody('creation','subject',req)
@@ -22,8 +20,6 @@ export const createSubject = async (req:Request, res: Response) => {
         return crudErrorHandler(500,'Subject creation failed',err,res)
     }
 }
-
-
 
 export const updateSubject = async (req:Request, res:Response) => {
     try {

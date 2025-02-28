@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx tsx --env-file=.env --watch  src/app.ts"
+    "start": "npx tsx --env-file=.env --watch src/app.ts"
   },
   "keywords": [],
   "author": "Jude.K",

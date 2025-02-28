@@ -49,7 +49,7 @@ const {id} = req.params
 const classToDelete = await Class.findOne({_id: id, forSchool: req.user.forSchool})
 
 if(!classToDelete) {
-    throw new Error('Class requested for update not found')
+    throw new Error('Class requested for deletion not found not found')
 
 }
 const deletedClass = await Class.findByIdAndDelete(id)
@@ -67,6 +67,7 @@ export const getAllClasses = async (req:Request, res: Response) => {
     try {
 
         const allClasses= await Class.find({forSchool: req.user.forSchool})
+                                .populate('subjects', 'name')
 
         if(allClasses.length < 1) {
             return crudErrorHandler(404,'No Classes found',{err:'No Classesfound in database'},res)
@@ -84,7 +85,7 @@ export const getSingleClass = async (req:Request, res: Response) => {
         const {id} = req.params
 
         const oneClass = await Class.findOne({_id: id, forSchool: req.user.forSchool})
-
+                               .populate('subjects', 'name')
         if(!oneClass) {
             return crudErrorHandler(404,'Requested class not found',{err:'Requested class not found in database'},res)
         }
