@@ -8,11 +8,11 @@ import adminRouter from './routes/admin/admin.route.js'
 import schoolAdminRouter from './routes/users/schoolAdmin.route.js'
 import authRouter from './routes/users/auth.route.js'
 import subjectRouter from './routes/academics/subject.route.js'
+import classRouter from './routes/academics/class.route.js'
+import termRouter from './routes/academics/term.route.js'
+import streamRouter from './routes/academics/stream.route.js'
 
 import { checkEnvironmentVairables } from './utils/validation/validate.js'
-import classRouter from './routes/academics/class.route.js'
-
-
 
 const envVariableArray = ['JWT_SECRET','DB_URL','PORT']
 checkEnvironmentVairables(envVariableArray)
@@ -65,6 +65,8 @@ app.use('/api/school_admins', schoolAdminRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/subjects', subjectRouter)
 app.use('/api/classes', classRouter)
+app.use('/api/terms', termRouter)
+app.use('/api/streams', streamRouter)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}`)

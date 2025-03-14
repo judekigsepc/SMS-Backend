@@ -14,6 +14,8 @@ const streamSchema = new Schema<IStream>({
     }
 },{timestamps:true})
 
-const Stream = mongoose.model<IStream>('Stream',streamSchema)
+const Stream = mongoose.models.Stream ||  mongoose.model<IStream>('Stream',streamSchema)
 
 export default Stream
+
+// There is an issue with streans that needs to be fixed

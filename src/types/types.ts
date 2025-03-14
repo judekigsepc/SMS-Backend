@@ -79,7 +79,15 @@ export type ValidPermissions =
 'create_subject'|
 'edit_subject' |
 'delete_subject'|
-'view_subjects'
+'view_subjects'|
+'create_term' | 
+'edit_term' |
+'delete_term' |
+'view_terms'|
+'create_stream'|
+'edit_stream'|
+'delete_stream' |
+'view_streams'
 
 export interface IUser {
     firstName: string

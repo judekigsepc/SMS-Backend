@@ -30,7 +30,7 @@ export const updateTerm = async (req:Request, res:Response) => {
         const TermToUpdate = await Term.findOne({_id: id, forSchool: req.user.forSchool})
 
         if(!TermToUpdate) {
-            throw new Error('Term requested to update not found')
+            throw new Error('Term requested for update not found')
         }
 
         const updatedTerm = await Term.findByIdAndUpdate(id, req.body,{new:true})
@@ -49,7 +49,7 @@ const {id} = req.params
 const TermToDelete = await Term.findOne({_id: id, forSchool: req.user.forSchool})
 
 if(!TermToDelete) {
-    throw new Error('Term requested to update not found')
+    throw new Error('Term requested for deletion not found')
 
 }
 const deletedTerm = await Term.findByIdAndDelete(id)
@@ -89,7 +89,7 @@ export const getSingleTerm = async (req:Request, res: Response) => {
             return crudErrorHandler(404,'Requested Term not found',{err:'Requested Term not found in database'},res)
         }
  
-        return crudResultHandler(200,'Term retrieved successfuly', Term ,res)
+        return crudResultHandler(200,'Term retrieved successfuly', term ,res)
 
     }catch(err: unknown) {
         return crudErrorHandler(500,'Term retrieval failed',err,res)

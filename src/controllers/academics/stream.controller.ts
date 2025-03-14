@@ -1,7 +1,7 @@
+import Stream from "../../models/academics/stream.model.js";
 import { Request, Response } from "express";
 import { validateRequestBody } from "../../utils/validation/validate.js";
 import { crudErrorHandler, crudResultHandler } from "../../utils/handler.utils.js";
-import Stream from "../../models/academics/streams.model.js";
 
 export const createStream = async (req:Request, res: Response) => {
     try {
@@ -79,13 +79,13 @@ export const getSingleStream = async (req:Request, res: Response) => {
     try {
         const {id} = req.params
 
-        const stream = await Stream.findOne({_id: id, forSchool: req.user.forSchool})
+        const singleStream = await Stream.findOne({_id: id, forSchool: req.user.forSchool})
 
-        if(!stream) {
+        if(!singleStream) {
             return crudErrorHandler(404,'Requested stream not found',{err:'Requested stream not found in database'},res)
         }
  
-        return crudResultHandler(200,'Stream retrieved successfuly', stream ,res)
+        return crudResultHandler(200,'Stream retrieved successfuly', singleStream ,res)
 
     }catch(err: unknown) {
         return crudErrorHandler(500,'Stream retrieval failed',err,res)
