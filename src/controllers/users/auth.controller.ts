@@ -39,7 +39,7 @@ export const loginUser = async (req: Request, res:Response) => {
             sameSite:true
         })
 
-        res.json({message:'Login successful',userType: user.role})
+        res.status(200).json({message:'Login successful',userType: user.role}) 
       
     }catch(err:unknown) {
          return crudErrorHandler(500, 'Login failed',err, res)
