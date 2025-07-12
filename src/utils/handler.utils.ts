@@ -8,6 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 type ValidErrorStatuses = 404 | 400 | 500 | 403 | 401 
 
+// Error handler
 export const crudErrorHandler: (status: ValidErrorStatuses, errMsg: string, err: unknown, res: Response) => void = (status, errMsg, err, res) => {
     if(err instanceof Error) {
         res.status(status).json({
@@ -27,6 +28,7 @@ export const crudErrorHandler: (status: ValidErrorStatuses, errMsg: string, err:
 
 type ValidSucessStatuses = 200 | 201
 
+//Result sender or handler
 export const crudResultHandler = <T>(status:ValidSucessStatuses,message:string, result:T, res:Response):void => {
     res.status(status).json({
         message,
